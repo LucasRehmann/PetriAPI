@@ -1,5 +1,5 @@
 fastapi[all]
 numpy
-cv2
-pil
-urllib
+opencv-python
+Pillow
+urllib3
