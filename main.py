@@ -17,11 +17,7 @@ async def process_image(request: Request):
         arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
         img = cv2.imdecode(arr, -1) # 'Load it as it is'
 
-        #cv2_imshow(img)
         if cv2.waitKey() & 0xff == 27: quit()
-
-        if img.shape[::2] != (400,400):
-            crop = cv2.resize(img, (int(int(img.shape[1]) * 400/int(img.shape[1])), int(int(img.shape[0]) * 400/int(img.shape[0]))), cv2.INTER_AREA)
 
         if img.shape[::2] != (400,400):
             crop = cv2.resize(img, (int(int(img.shape[1]) * 400/int(img.shape[1])), int(int(img.shape[0]) * 400/int(img.shape[0]))), cv2.INTER_AREA)
