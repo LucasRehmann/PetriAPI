@@ -19,16 +19,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app = FastAPI()
-
 @app.post("/process_image/")
-async def process_image(request: Request):
+#async def process_image(request: Request):
+async def process_image(image_file: UploadFile = File(...)):
     try:
-        data = await request.json()
-        image_url = data.get("image_url")
-        req = urllib.request.urlopen(image_url)
-        arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
-        img = cv2.imdecode(arr, -1) # 'Load it as it is'
+        # data = await request.json()
+        # image_url = data.get("image_url")
+        # req = urllib.request.urlopen(image_url)
+        # arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
+        # img = cv2.imdecode(arr, -1) # 'Load it as it is'
+
+        contents = await image_file.read()
+        nparr = np.frombuffer(contents, np.uint8)
+        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)        
 
         if cv2.waitKey() & 0xff == 27: quit()
 
