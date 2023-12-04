@@ -18,7 +18,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["Content-Type",  
                    "Access-Control-Allow-Credentials", 
-                   "Access-Control-Allow-Origin", 
                    "Access-Control-Allow-Metods"]
 )
 
