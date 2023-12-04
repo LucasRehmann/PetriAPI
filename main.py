@@ -16,22 +16,20 @@ app.add_middleware(
     allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],
+    allow_headers=["Content-Type", 
+                   "Access-Control-Allow-Credentials", 
+                   "Access-Control-Allow-Origin", 
+                   "Access-Control-Allow-Metods"],
 )
 
 @app.post("/process_image/")
-#async def process_image(request: Request):
-async def process_image(image_file: UploadFile = File(...)):
+async def process_image(request: Request):
     try:
-        # data = await request.json()
-        # image_url = data.get("image_url")
-        # req = urllib.request.urlopen(image_url)
-        # arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
-        # img = cv2.imdecode(arr, -1) # 'Load it as it is'
-
-        contents = await image_file.read()
-        nparr = np.frombuffer(contents, np.uint8)
-        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)        
+        data = await request.json()
+        image_url = data.get("image_url")
+        req = urllib.request.urlopen(image_url)
+        arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
+        img = cv2.imdecode(arr, -1) # 'Load it as it is'
 
         if cv2.waitKey() & 0xff == 27: quit()
 
