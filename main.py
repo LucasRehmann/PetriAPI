@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-origins = ["http://localhost"]
+origins = ["https://petrilab.vercel.app"]
 
 app.add_middleware(
     CORSMiddleware,
