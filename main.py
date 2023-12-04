@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-origins = ["*"]
+origins = ["localhost:3000"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -19,7 +19,7 @@ app.add_middleware(
     allow_headers=["Content-Type", 
                    "Access-Control-Allow-Credentials", 
                    "Access-Control-Allow-Origin", 
-                   "Access-Control-Allow-Metods"],
+                   "Access-Control-Allow-Metods"]
 )
 
 @app.post("/process_image/")
