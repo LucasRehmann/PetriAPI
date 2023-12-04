@@ -9,14 +9,14 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-origins = ["https://petrilab.vercel.app/scan"]
+origins = ["https://petrilab.vercel.app"]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["Content-Type", 
+    allow_headers=["Content-Type",  
                    "Access-Control-Allow-Credentials", 
                    "Access-Control-Allow-Origin", 
                    "Access-Control-Allow-Metods"]
