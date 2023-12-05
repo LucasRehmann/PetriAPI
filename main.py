@@ -9,17 +9,17 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# origins = ["https://petrilab.vercel.app"]
+origins = ["https://petrilab.vercel.app"]
 
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=origins,
-#     allow_credentials=True,
-#     allow_methods=["POST"],
-#     allow_headers=["Content-Type",  
-#                    "Access-Control-Allow-Credentials", 
-#                    "Access-Control-Allow-Metods"]
-# )
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["POST"],
+    allow_headers=["Content-Type",  
+                   "Access-Control-Allow-Credentials", 
+                   "Access-Control-Allow-Methods"]
+)
 
 @app.post("/process_image/")
 async def process_image(request: Request):
